@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.js"></script>
+    <script src="react/babel.js"></script>
+    
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class TextAreaCounter extends React.Component {
+            constructor() {
+                super()
+                this.state = {}
+                this.onTextChange = this.onTextChange.bind(this)
+            }
+
+            onTextChange(event) {
+                this.setState({
+                text: event.target.value,
+                });
+            }
+
+            render(){
+                const text = 'text' in this.state ? this.state.text : this.props.text;
+                console.log(text.length)
+                return(
+                <div>
+                    <textarea defaultValue={text} 
+                              onChange={this.onTextChange}/>
+                    <h3>{text.length}</h3>
+                </div>
+
+                // <div>
+                //     <textarea defaultValue={text} 
+                //               onChange={this.onTextChange}/>
+                //     <h3>{text.length}</h3>
+                // </div>
+            )
+            }
+        }
+        ReactDOM.render(<TextAreaCounter text="walnuts"/>, document.getElementById('app'))
+    </script>
+</body>
+</html>

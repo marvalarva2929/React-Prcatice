@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSX Forms: uncontrolled onSubmit</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: -apple-system, sans-serif;
+      }
+      br {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.js"></script>
+    <script src="react/babel.js"></script>
+    <script type="text/babel">
+
+      const useState = React.useState
+
+      const profile = {
+        firstname: 'Jessie',
+        lastname: 'Pinkman',
+        gender: 'male',
+        acceptTOC: false,
+      };
+
+      function UncontrolledForm() {
+
+        const [prof, updateProfile] = useState(profile)
+
+        const updateForm = ({target}) => {
+
+          const newProf = {...prof}
+          newProf[target.name] = target.type === 'checkbox' ? target.checked : target.value
+          updateProfile(newProf)
+          
+        }
+
+        return (
+          <form>
+            <label>
+              First name:{' '}
+              <input
+                type="text"
+                name="firstname"
+                value={prof.firstname}
+                onChange={updateForm}
+              />
+            </label>
+            <br />
+            <label>
+              Last name:{' '}
+              <input
+                type="text"
+                name="lastname"
+                value={prof.lastname}
+                onChange={updateForm}
+              />
+            </label>
+            <br />
+            Gender:
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                checked={prof.gender === 'male'}
+                value="male"
+                onChange={updateForm}
+              />
+              Male
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                checked={prof.gender === 'female'}
+                value="female"
+                onChange={updateForm}
+
+              />
+              Female
+            </label>
+            <br />
+            <label>
+              <input
+                type="checkbox"
+                name="acceptTOC"
+                checked={prof.acceptTOC === true}
+                onChange={updateForm}
+              />
+              I accept terms and things
+            </label>
+            <br />
+            <input type="submit" value="Save" />
+          </form>
+        )
+      }
+      ReactDOM.render(<UncontrolledForm />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

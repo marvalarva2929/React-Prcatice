@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSX Forms: onChange</title>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        font-family: -apple-system, sans-serif;
+      }
+      a {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.js"></script>
+    <script src="react/babel.js"></script>
+    <script type="text/babel">
+      function changeHandler({target}) {
+        console.log(Array.from(target.selectedOptions).map((option) => option.value))
+      }
+
+      function ExampleForm() {
+        return (
+          <select defaultValue = {['jazz', 'bluez']}
+                  multiple={true}
+                  onChange={changeHandler}>
+            <option value = 'jazz'>Ya like Jazz?</option>
+            <option value = 'bluez'> Or ya like da Bluz?</option>
+            <option value = 'jimmy'>It might be a salamander</option>
+          </select>
+        );
+      }
+
+      ReactDOM.render(<ExampleForm />, document.getElementById('app'));
+    </script>
+  </body>
+</html>

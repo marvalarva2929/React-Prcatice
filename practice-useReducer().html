@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="00.normal.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- my app renders here -->
+    </div>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.js"></script>
+    <script src="react/babel.js"></script>
+    <script type="text/babel">
+
+    const {useState, useReducer} = React;
+
+    const ACTIONS = {
+        INCREMENT: 'increment',
+        DECREMENT: 'decrement',
+        RESET: 'reset'
+    }
+
+    const initialValue = 0
+    const reducer = (currentState, action) => {
+        var newState = currentState
+        switch(action.type) {
+            case ACTIONS.INCREMENT :
+                newState += 1
+                console.log('incrementing')
+                break;
+            case ACTIONS.DECREMENT : 
+                newState -= 1
+                console.log('decrementing')
+                break;
+            case ACTIONS.RESET :
+                newState = 0
+                console.log('reseting')
+                break;
+            default : 
+                newState = currentState
+                break;
+        }
+        return newState
+    }
+    function Counter() {
+
+        const [count, dispatch] = useReducer(reducer, initialValue)
+
+        return (
+            <div>
+                <p>Count: {count}</p>
+                <div>
+                    <button onClick = {()=> {dispatch({type: ACTIONS.DECREMENT})}}>Decrement</button>
+                    <button onClick = {()=> {dispatch({type: ACTIONS.RESET})}}>Reset</button>
+                    <button onClick = {()=> {dispatch({type: ACTIONS.INCREMENT})}}>Increment</button>
+                </div>
+            </div>
+        )
+    }
+      ReactDOM.render(
+        <Counter/>,
+        document.getElementById('app')
+      );
+    </script>
+  </body>
+</html>

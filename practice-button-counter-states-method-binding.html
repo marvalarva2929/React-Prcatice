@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.js"></script>
+    <script src="react/babel.js"></script>
+    
+    <div id="app"></div>
+
+    <script type="text/babel">
+        //app code
+        class ButtonCounter extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    count: 0
+                }
+                this.eventHandler = this.eventHandler.bind(this)
+            }
+
+            counter = 0
+
+            getCount = () => {
+                console.log('giving count')
+                return this.counter
+            }
+
+            setCount = (amnt) => {
+                this.counter += amnt
+                // console.log(this.counter)
+                this.setState({
+                    count: this.counter
+                })
+            }
+
+            eventHandler(){
+                this.setCount(1)
+            }
+
+            render(){
+                return(
+                // <div>
+                //     <button onClick = {() => this.setCount(1)}>{this.state.count}</button>
+                // </div>
+
+                <div>
+                    <button onClick = {this.eventHandler}>{this.state.count}</button>
+                </div>
+
+                // <div>
+                //     <textarea defaultValue={text} 
+                //               onChange={this.onTextChange}/>
+                //     <h3>{text.length}</h3>
+                // </div>
+            )
+            }
+        }
+        ReactDOM.render(<ButtonCounter />, document.getElementById('app'))
+    </script>
+</body>
+</html>

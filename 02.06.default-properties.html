@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="react/react.js"></script>
+    <script src="react/react-dom.js"></script>
+    <script src="react/babel.js"></script>
+    
+    <div id="app"></div>
+
+    <script type="text/babel">
+        //app code
+        const MyComponent = function(props) {
+            // return React.createElement('span', null, 'This is a custom component')
+            return <span>You like {props.Ilike} but you DEFINETLY don't like {props.Idontlike}</span>
+        }
+        MyComponent.defaultProps = {
+            Idontlike: "walnuts"        //use the same .defaultProps for function and class components
+        }
+        ReactDOM.render(<MyComponent Ilike = {prompt('what do you like?')}/>, document.getElementById('app'))
+    </script>
+</body>
+</html>
